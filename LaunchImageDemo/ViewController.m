@@ -40,7 +40,9 @@
 //    [self setUpLauchIvWithLaunchScreen];
     
     // 使用LaunchScreen.storyboard加载启动图片,使用loading的gif加载图片
-    [self setUpLauchIvWithLaunchScreen2];
+//    [self setUpLauchIvWithLaunchScreen2];
+    
+    [self setUpLauchIvWithLaunchScreen3];
 }
 
 /**
@@ -146,6 +148,26 @@
                      }];
     
     [launchView startAnimating];
+}
+
+
+/**
+ *  使用LaunchScreen.storyboard加载启动图片
+ *  直接使用LaunchScreen.storyboard的View
+ */
+- (void) setUpLauchIvWithLaunchScreen3 {
+    
+    UIViewController *viewController = [[UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil] instantiateViewControllerWithIdentifier:@"LaunchScreen"];
+    
+    UIView *launchView = viewController.view;
+    [self.view addSubview:launchView];
+    
+    [UIView animateWithDuration:2.0f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        launchView.alpha = 0.0f;
+        launchView.layer.transform = CATransform3DScale(CATransform3DIdentity, 1.3f, 1.3f, 1.0f);
+    } completion:^(BOOL finished) {
+        [launchView removeFromSuperview];
+    }];
 }
 
 
