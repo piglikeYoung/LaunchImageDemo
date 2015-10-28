@@ -7,12 +7,28 @@
 //  LaunchImage在APP初始化完之后会立即消失并显示APP的界面 但是有的时候我们不希望它这么快就消失(比如有的人希望有个过渡效果 有的人希望等某些设置或者数据加载完之后再消失) 这也很简单 我们只要自己把LaunchImage再显示出来并且置顶就OK了
 
 #import "ViewController.h"
+#import "UIView+Extension.h"
 
 @interface ViewController ()
+
+@property (nonatomic, strong) NSMutableArray *loadAnimImages;
 
 @end
 
 @implementation ViewController
+
+- (NSMutableArray *)loadAnimImages {
+    if (!_loadAnimImages) {
+        NSInteger loadImageCount = 92;
+        _loadAnimImages = [NSMutableArray arrayWithCapacity:loadImageCount];
+        for (int i = 0; i <= loadImageCount; i++) {
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"wnx%02d", i]];
+            [_loadAnimImages addObject:image];
+        }
+    }
+    
+    return _loadAnimImages;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,7 +37,10 @@
 //    [self setUpLauchIvWithLaunchImage];
     
     // 使用LaunchScreen.storyboard加载启动图片
-    [self setUpLauchIvWithLaunchScreen];
+//    [self setUpLauchIvWithLaunchScreen];
+    
+    // 使用LaunchScreen.storyboard加载启动图片,使用loading的gif加载图片
+    [self setUpLauchIvWithLaunchScreen2];
 }
 
 /**
@@ -93,6 +112,40 @@
                          [launchView removeFromSuperview];
                          
                      }];
+}
+
+/**
+ *  使用LaunchScreen.storyboard加载启动图片
+ *  使用loading的gif加载图片
+ */
+- (void) setUpLauchIvWithLaunchScreen2 {
+    
+    UIImage *launchImage = [UIImage imageNamed:@"wnx00"];
+    UIImageView *launchView = [[UIImageView alloc] initWithImage:launchImage];
+    launchView.size = launchImage.size;
+    launchView.center = self.view.center;
+    launchView.contentMode = UIViewContentModeScaleAspectFill;
+    launchView.animationImages = self.loadAnimImages;
+    launchView.animationRepeatCount = 1;
+    launchView.animationDuration = 2.0f;
+    [self.view addSubview:launchView];
+    
+    [UIView animateWithDuration:2.0f
+                          delay:launchView.animationDuration
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         
+                         launchView.alpha = 0.0f;
+                         launchView.layer.transform = CATransform3DScale(CATransform3DIdentity, 1.2, 1.2, 1);
+                         
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [launchView removeFromSuperview];
+                         
+                     }];
+    
+    [launchView startAnimating];
 }
 
 

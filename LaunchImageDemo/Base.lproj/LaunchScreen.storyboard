@@ -17,9 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ElementStartUpPg" translatesAutoresizingMaskIntoConstraints="NO" id="0sG-8k-EIv">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ElementStartUpPg" translatesAutoresizingMaskIntoConstraints="NO" id="0sG-8k-EIv">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wnx00" translatesAutoresizingMaskIntoConstraints="NO" id="iY4-Tl-GlG">
+                                <rect key="frame" x="278" y="274.5" width="44" height="51"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="QrZ-1t-2O0"/>
+                                    <constraint firstAttribute="height" constant="51" id="pcN-X9-LqI"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <animations/>
@@ -27,8 +35,10 @@
                         <constraints>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="0sG-8k-EIv" secondAttribute="bottom" id="75N-vO-BlI"/>
                             <constraint firstItem="0sG-8k-EIv" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="8Fr-mE-UxI"/>
+                            <constraint firstItem="iY4-Tl-GlG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JcL-Kd-C9n"/>
                             <constraint firstAttribute="trailing" secondItem="0sG-8k-EIv" secondAttribute="trailing" id="VbU-6C-hwC"/>
                             <constraint firstItem="0sG-8k-EIv" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="YdA-oD-cuW"/>
+                            <constraint firstItem="iY4-Tl-GlG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="sRQ-Of-jLE"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,5 +49,6 @@
     </scenes>
     <resources>
         <image name="ElementStartUpPg" width="1242" height="2208"/>
+        <image name="wnx00" width="44" height="51"/>
     </resources>
 </document>
